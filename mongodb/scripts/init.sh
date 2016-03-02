@@ -31,15 +31,15 @@ getValue() {
 version=${MongoDBVersion}
 
 if [ -z "$version" ] ; then
-  version="3.0"
+  version="3.2"
 fi
 
-if [ "${version}" == "3.0" ]; then
-    echo "[mongodb-org-${version}]
+if [ "${version}" == "3.2" ]; then
+    echo "[mongodb-org-3.2]
 name=MongoDB Repository
-baseurl=http://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/3.0/x86_64/
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/
 gpgcheck=0
-enabled=1" > /etc/yum.repos.d/mongodb-org-${version}.repo
+enabled=1" > /etc/yum.repos.d/mongodb-org-3.2.repo
 
 
 else
@@ -59,7 +59,8 @@ yum --enablerepo=epel install node npm -y
 yum install -y mongodb-org
 yum install -y munin-node
 yum install -y libcgroup
-yum -y install mongo-10gen-server mongodb-org-shell
+#yum -y install mongo-10gen-server mongodb-org-shell
+yum install -y mongodb-org
 yum -y install sysstat
 
 #################################################################
