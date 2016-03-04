@@ -158,7 +158,7 @@
     "PrimaryNodeSubnet": {
       "Type": "AWS::EC2::Subnet::Id",
       "Description": "Subnet-ID the existing subnet in your VPC where you want to deploy Primary node(s).",
-      "AllowedPattern": "subnet-[0-9a-z]{8}"
+      "AllowedPattern": "subnet-[0-9a-z]{8}",
     },
     "Secondary0NodeSubnet": {
       "Type": "AWS::EC2::Subnet::Id",
@@ -169,7 +169,7 @@
       "Type": "AWS::EC2::Subnet::Id",
       "Description": "Subnet-ID the existing subnet in your VPC where you want to deploy Primary node(s).",
       "AllowedPattern": "subnet-[0-9a-z]{8}"
-    }
+    },
   },
   "Conditions": {
     "UsePIops": {
@@ -598,6 +598,9 @@
     }
   },
   "Mappings": {
+    "RegionAZ" : {
+      "us-east-1" : { "AZ" : ["us-east-1c", "us-east-1d", "us-east-1e"]}
+    },
     "InstanceTypeArchFromNode": {
       "m3.medium": {
         "Arch": "64HVM"
@@ -5772,10 +5775,7 @@
             "Ref": "Secondary1NodeSubnet"
           }
         ],
-        "AvailabilityZones":
-        [  
-          "us-east-1c", "us-east-1d", "us-east-1e"
-          ],
+        "AvailabilityZones" : { "Fn::FindInMap" : [ "Region2AZ", { "Ref" : "AWS::Region" }, "AZ" ] },
         "LaunchConfigurationName": {
           "Ref": "ConfigServerReplSetLaunchConfig"
         },
