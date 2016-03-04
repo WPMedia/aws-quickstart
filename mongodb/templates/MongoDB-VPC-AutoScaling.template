@@ -158,7 +158,7 @@
     "PrimaryNodeSubnet": {
       "Type": "AWS::EC2::Subnet::Id",
       "Description": "Subnet-ID the existing subnet in your VPC where you want to deploy Primary node(s).",
-      "AllowedPattern": "subnet-[0-9a-z]{8}",
+      "AllowedPattern": "subnet-[0-9a-z]{8}"
     },
     "Secondary0NodeSubnet": {
       "Type": "AWS::EC2::Subnet::Id",
