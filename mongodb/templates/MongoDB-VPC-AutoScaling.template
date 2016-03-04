@@ -5775,7 +5775,7 @@
             "Ref": "Secondary1NodeSubnet"
           }
         ],
-        "AvailabilityZones" : { "Fn::FindInMap" : [ "Region2AZ", { "Ref" : "AWS::Region" }, "AZ" ] },
+        "AvailabilityZones" : { "Fn::FindInMap" : [ "RegionAZ", { "Ref" : "AWS::Region" }, "AZ" ] },
         "LaunchConfigurationName": {
           "Ref": "ConfigServerReplSetLaunchConfig"
         },
