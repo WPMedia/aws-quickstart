@@ -742,31 +742,7 @@
     }
   },
   "Resources": {
-    "PrimaryReplicaNode0WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "Condition": "UsePIopsAndCreateNoShard",
-      "Properties": {
-        "Handle": {
-          "Ref": "PrimaryReplicaNode0WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "PrimaryReplicaNode0WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "Condition": "UseGP2AndCreateNoShard",
-      "Properties": {
-        "Handle": {
-          "Ref": "PrimaryReplicaNode0WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "PrimaryReplicaNode0WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "CreateNoShard"
-    },
+    
     "PrimaryReplicaNode0NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndCreateNoShard",
@@ -925,23 +901,6 @@
                       {
                         "Ref": "VPC"
                       }
-                    ]
-                  ]
-                },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "PrimaryReplicaNode0WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
                     ]
                   ]
                 },
@@ -1125,23 +1084,6 @@
                   ]
                 },
                 " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "PrimaryReplicaNode0WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
-                " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
                 "#rm -rf *\n",
@@ -1157,33 +1099,7 @@
         }
       }
     },
-    "PrimaryReplicaNode00WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "PrimaryReplicaNode00NodeInstanceIO1",
-      "Condition": "UsePIopsAndCreateMinOneShard",
-      "Properties": {
-        "Handle": {
-          "Ref": "PrimaryReplicaNode00WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "PrimaryReplicaNode00WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "PrimaryReplicaNode00NodeInstanceGP2",
-      "Condition": "UseGP2AndCreateMinOneShard",
-      "Properties": {
-        "Handle": {
-          "Ref": "PrimaryReplicaNode00WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "PrimaryReplicaNode00WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "CreateMinOneShard"
-    },
+    
     "PrimaryReplicaNode00NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndCreateMinOneShard",
@@ -1345,23 +1261,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "PrimaryReplicaNode00WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -1541,23 +1441,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "PrimaryReplicaNode00WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -1574,33 +1458,7 @@
         }
       }
     },
-    "SecondaryReplicaNode0WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode0NodeInstanceIO1",
-      "Condition": "UsePIopsAndIfSecondaryReplicaNode0",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode0WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode0WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode0NodeInstanceGP2",
-      "Condition": "UseGP2AndIfSecondaryReplicaNode0",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode0WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode0WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "IfSecondaryReplicaNode0"
-    },
+    
     "SecondaryReplicaNode0NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndIfSecondaryReplicaNode0",
@@ -1762,23 +1620,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode0WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+               
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -1958,23 +1800,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode0WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -1991,33 +1817,7 @@
         }
       }
     },
-    "SecondaryReplicaNode00WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode00NodeInstanceIO1",
-      "Condition": "UsePIopsAndIfSecondaryReplicaNode00",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode00WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode00WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode00NodeInstanceGP2",
-      "Condition": "UseGP2AndIfSecondaryReplicaNode00",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode00WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode00WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "IfSecondaryReplicaNode00"
-    },
+   
     "SecondaryReplicaNode00NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndIfSecondaryReplicaNode00",
@@ -2179,23 +1979,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode00WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+               
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -2375,23 +2159,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode00WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -2408,33 +2176,7 @@
         }
       }
     },
-    "SecondaryReplicaNode1WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode1NodeInstanceIO1",
-      "Condition": "UsePIopsAndIfSecondaryReplicaNode1",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode1WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode1WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode1NodeInstanceGP2",
-      "Condition": "UseGP2AndIfSecondaryReplicaNode1",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode1WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode1WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "IfSecondaryReplicaNode1"
-    },
+    
     "SecondaryReplicaNode1NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndIfSecondaryReplicaNode1",
@@ -2596,23 +2338,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode1WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -2792,23 +2518,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode1WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -2825,33 +2535,7 @@
         }
       }
     },
-    "SecondaryReplicaNode01WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode01NodeInstanceIO1",
-      "Condition": "UsePIopsAndIfSecondaryReplicaNode01",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode01WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode01WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode01NodeInstanceGP2",
-      "Condition": "UseGP2AndIfSecondaryReplicaNode01",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode01WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode01WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "IfSecondaryReplicaNode01"
-    },
+    
     "SecondaryReplicaNode01NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndIfSecondaryReplicaNode01",
@@ -3013,23 +2697,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode01WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -3209,23 +2877,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode01WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -3242,33 +2894,7 @@
         }
       }
     },
-    "PrimaryReplicaNode10WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "PrimaryReplicaNode10NodeInstanceIO1",
-      "Condition": "UsePIopsAndCreateMinTwoShards",
-      "Properties": {
-        "Handle": {
-          "Ref": "PrimaryReplicaNode10WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "PrimaryReplicaNode10WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "PrimaryReplicaNode10NodeInstanceGP2",
-      "Condition": "UseGP2AndCreateMinTwoShards",
-      "Properties": {
-        "Handle": {
-          "Ref": "PrimaryReplicaNode10WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "PrimaryReplicaNode10WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "CreateMinTwoShards"
-    },
+    
     "PrimaryReplicaNode10NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndCreateMinTwoShards",
@@ -3430,23 +3056,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "PrimaryReplicaNode10WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -3626,23 +3236,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "PrimaryReplicaNode10WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -3659,33 +3253,7 @@
         }
       }
     },
-    "SecondaryReplicaNode10WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode10NodeInstanceIO1",
-      "Condition": "UsePIopsAndIfSecondaryReplicaNode10",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode10WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode10WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode10NodeInstanceGP2",
-      "Condition": "UseGP2AndIfSecondaryReplicaNode10",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode10WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode10WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "IfSecondaryReplicaNode10"
-    },
+    
     "SecondaryReplicaNode10NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndIfSecondaryReplicaNode10",
@@ -3847,23 +3415,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode10WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -4043,23 +3595,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode10WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -4076,33 +3612,7 @@
         }
       }
     },
-    "SecondaryReplicaNode11WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode11NodeInstanceIO1",
-      "Condition": "UsePIopsAndIfSecondaryReplicaNode11",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode11WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode11WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode11NodeInstanceGP2",
-      "Condition": "UseGP2AndIfSecondaryReplicaNode11",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode11WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode11WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "IfSecondaryReplicaNode11"
-    },
+    
     "SecondaryReplicaNode11NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndIfSecondaryReplicaNode11",
@@ -4264,23 +3774,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode11WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -4460,23 +3954,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode11WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -4493,33 +3971,7 @@
         }
       }
     },
-    "PrimaryReplicaNode20WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "PrimaryReplicaNode20NodeInstanceIO1",
-      "Condition": "UsePIopsAndCreateMinThreeShards",
-      "Properties": {
-        "Handle": {
-          "Ref": "PrimaryReplicaNode20WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "PrimaryReplicaNode20WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "PrimaryReplicaNode20NodeInstanceGP2",
-      "Condition": "UseGP2AndCreateMinThreeShards",
-      "Properties": {
-        "Handle": {
-          "Ref": "PrimaryReplicaNode20WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "PrimaryReplicaNode20WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "CreateMinThreeShards"
-    },
+    
     "PrimaryReplicaNode20NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndCreateMinThreeShards",
@@ -4681,23 +4133,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "PrimaryReplicaNode20WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -4877,23 +4313,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "PrimaryReplicaNode20WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -4910,33 +4330,7 @@
         }
       }
     },
-    "SecondaryReplicaNode20WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode20NodeInstanceIO1",
-      "Condition": "UsePIopsAndIfSecondaryReplicaNode20",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode20WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode20WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode20NodeInstanceGP2",
-      "Condition": "UseGP2AndIfSecondaryReplicaNode20",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode20WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode20WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "IfSecondaryReplicaNode20"
-    },
+    
     "SecondaryReplicaNode20NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndIfSecondaryReplicaNode20",
@@ -5098,23 +4492,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode20WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -5294,23 +4672,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode20WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -5327,33 +4689,7 @@
         }
       }
     },
-    "SecondaryReplicaNode21WaitForNodeInstallIO1": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode21NodeInstanceIO1",
-      "Condition": "UsePIopsAndIfSecondaryReplicaNode21",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode21WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode21WaitForNodeInstallGP2": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "SecondaryReplicaNode21NodeInstanceGP2",
-      "Condition": "UseGP2AndIfSecondaryReplicaNode21",
-      "Properties": {
-        "Handle": {
-          "Ref": "SecondaryReplicaNode21WaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      }
-    },
-    "SecondaryReplicaNode21WaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "IfSecondaryReplicaNode21"
-    },
+    
     "SecondaryReplicaNode21NodeInstanceGP2": {
       "Type": "AWS::EC2::Instance",
       "Condition": "UseGP2AndIfSecondaryReplicaNode21",
@@ -5515,23 +4851,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode21WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -5711,23 +5031,7 @@
                     ]
                   ]
                 },
-                " >> config.sh\n",
-                "#  Store WaitHandler\n",
-                "echo ",
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "\"",
-                      "export WAITHANDLER='",
-                      {
-                        "Ref": "SecondaryReplicaNode21WaitForNodeInstallWaitHandle"
-                      },
-                      "'",
-                      "\""
-                    ]
-                  ]
-                },
+                
                 " >> config.sh\n",
                 "./init.sh > install.log 2>&1 \n",
                 "#  Cleanup \n",
@@ -5743,86 +5047,6 @@
           "Ref": "NodeInstanceType"
         }
       }
-    },
-    "ConfigServerWaitForNodeInstall": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "DependsOn": "ConfigServerReplSetASGroup",
-      "Properties": {
-        "Handle": {
-          "Ref": "ConfigServerWaitForNodeInstallWaitHandle"
-        },
-        "Timeout": "3600"
-      },
-      "Condition": "CreateMinOneShard"
-    },
-    "ConfigServerWaitForNodeInstallWaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {},
-      "Condition": "CreateMinOneShard"
-    },
- 
-    "ConfigServerReplSetASGroup": {
-      "Type": "AWS::AutoScaling::AutoScalingGroup",
-      "Properties": {
-        "VPCZoneIdentifier": [
-          {
-            "Ref": "PrimaryNodeSubnet"
-          },
-          {
-            "Ref": "Secondary0NodeSubnet"
-          },
-          {
-            "Ref": "Secondary1NodeSubnet"
-          }
-        ],
-        "AvailabilityZones" : { "Fn::FindInMap" : [ "RegionAZ", { "Ref" : "AWS::Region" }, "AZ" ] },
-        "LaunchConfigurationName": {
-          "Ref": "ConfigServerReplSetLaunchConfig"
-        },
-        "Tags": [
-          {
-            "PropagateAtLaunch": "true",
-            "Key": "Name",
-            "Value": "ConfigServer"
-          },
-          {
-            "PropagateAtLaunch": "true",
-            "Key": "ClusterReplicaSetCount",
-            "Value": {
-              "Ref": "ClusterReplicaSetCount"
-            }
-          },
-          {
-            "PropagateAtLaunch": "true",
-            "Key": "ClusterShardCount",
-            "Value": {
-              "Ref": "ClusterShardCount"
-            }
-          },
-          {
-            "PropagateAtLaunch": "true",
-            "Key": "ConfigServerIndex",
-            "Value": "2"
-          }
-        ],
-        "MinSize": "3",
-        "MaxSize": "3"
-      },
-      "CreationPolicy": {
-        "ResourceSignal": {
-          "Timeout": "PT15M",
-          "Count": "2"
-        }
-      },
-      "UpdatePolicy": {
-        "AutoScalingRollingUpdate": {
-          "MinInstancesInService": "1",
-          "MaxBatchSize": "1",
-          "PauseTime": "PT15M",
-          "WaitOnResourceSignals": "true"
-        }
-      },
-      "Condition": "CreateMinOneShard"
     },
     "ConfigServerReplSetLaunchConfig": {
       "Type": "AWS::AutoScaling::LaunchConfiguration",
@@ -5944,15 +5168,76 @@
                 "#rm -rf *\n",
                 "# All is well so signal success\n",
                 "/opt/aws/bin/cfn-signal -e 0 -r \"MongoDB Config Server install success\" '",
-                {
-                  "Ref": "ConfigServerWaitForNodeInstallWaitHandle"
-                },
                 "'\n"
               ]
             ]
           }
         }
       }
+    },
+ 
+    "ConfigServerReplSetASGroup": {
+      "Type": "AWS::AutoScaling::AutoScalingGroup",
+      "Properties": {
+        "VPCZoneIdentifier": [
+          {
+            "Ref": "PrimaryNodeSubnet"
+          },
+          {
+            "Ref": "Secondary0NodeSubnet"
+          },
+          {
+            "Ref": "Secondary1NodeSubnet"
+          }
+        ],
+        "AvailabilityZones" : { "Fn::FindInMap" : [ "RegionAZ", { "Ref" : "AWS::Region" }, "AZ" ] },
+        "LaunchConfigurationName": {
+          "Ref": "ConfigServerReplSetLaunchConfig"
+        },
+        "Tags": [
+          {
+            "PropagateAtLaunch": "true",
+            "Key": "Name",
+            "Value": "ConfigServer"
+          },
+          {
+            "PropagateAtLaunch": "true",
+            "Key": "ClusterReplicaSetCount",
+            "Value": {
+              "Ref": "ClusterReplicaSetCount"
+            }
+          },
+          {
+            "PropagateAtLaunch": "true",
+            "Key": "ClusterShardCount",
+            "Value": {
+              "Ref": "ClusterShardCount"
+            }
+          },
+          {
+            "PropagateAtLaunch": "true",
+            "Key": "ConfigServerIndex",
+            "Value": "2"
+          }
+        ],
+        "MinSize": "3",
+        "MaxSize": "3"
+      },
+      "CreationPolicy": {
+        "ResourceSignal": {
+          "Timeout": "PT15M",
+          "Count": "2"
+        }
+      },
+      "UpdatePolicy": {
+        "AutoScalingRollingUpdate": {
+          "MinInstancesInService": "1",
+          "MaxBatchSize": "1",
+          "PauseTime": "PT15M",
+          "WaitOnResourceSignals": "true"
+        }
+      },
+      "Condition": "CreateMinOneShard"
     }
   }
 }
